@@ -11,6 +11,7 @@ public class TurnManager {
             instance = new TurnManager();
         }
         return instance;
+
     }
 
     private TurnManager() {
