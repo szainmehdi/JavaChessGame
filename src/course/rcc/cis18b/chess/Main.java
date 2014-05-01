@@ -1,8 +1,28 @@
 package course.rcc.cis18b.chess;
 
-public class Main {
+import java.util.Scanner;
 
-    public static void main(String[] args) {
+public class Main
+{
+
+    public static void main(String[] args)
+    {
+        Board board = new Board();
+        Scanner keyboard = new Scanner(System.in);
+        char answer;
+
+        do
+        {
+            board.PrintBoard();
+
+            System.out.println("\n\n Move piece?");
+            if(keyboard.next().charAt(0) == 'y')
+            {
+                board.MovePiece();
+            }
+            System.out.println("Print board? ");
+            answer = keyboard.next().charAt(0);
+        }while(answer == 'y');
 
     }
 }
