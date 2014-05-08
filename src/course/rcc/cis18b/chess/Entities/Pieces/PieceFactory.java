@@ -1,11 +1,15 @@
-package course.rcc.cis18b.chess;
+package course.rcc.cis18b.chess.Entities.Pieces;
 
-public class PieceFactory
+public abstract class PieceFactory
 {
-    public static void CreatePiece(PieceType type)
+    /**
+     * Create a piece using PieceType.
+     * @param type
+     * @return a newly minted Piece.
+     */
+    public static Piece make(PieceType type)
     {
-        /*
-        Piece piece = new Piece();
+        Piece piece;
 
         switch(type)
         {
@@ -27,8 +31,9 @@ public class PieceFactory
             case PAWN:
                 piece = new Pawn();
                 break;
+            default:
+                throw new IllegalArgumentException(type.toString() + " is not a valid type.");
         }
-        */
-        //return piece;
+        return piece;
     }
 }

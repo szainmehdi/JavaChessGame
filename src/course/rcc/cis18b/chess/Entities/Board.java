@@ -1,3 +1,24 @@
+package course.rcc.cis18b.chess.Entities;
+
+public class Board
+{
+    /**
+     * Use a standard 2-D array of Spaces to account for each
+     * space on the board. A regular chess board spans
+     * 8 spaces both horizontally and vertically,
+     * for a total of 64 spaces.
+     */
+    public Space[][] spaces = new Space[8][8];
+
+    public Board()
+    {
+
+    }
+
+}
+
+
+/*
 package course.rcc.cis18b.chess;
 
 import java.util.ArrayList;
@@ -58,3 +79,4 @@ public class Board
         piece.Move();
     }
 }
+*/

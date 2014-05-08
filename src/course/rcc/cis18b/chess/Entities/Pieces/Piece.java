@@ -1,3 +1,15 @@
+package course.rcc.cis18b.chess.Entities.Pieces;
+
+public interface Piece
+{
+    /**
+     * Get a reference to the piece's drawable image or model.
+     * @return
+     */
+    public String getModel();
+
+}
+/*
 package course.rcc.cis18b.chess;
 
 import java.util.Scanner;
@@ -44,3 +56,4 @@ public class Piece
 
     }
 }
+*/

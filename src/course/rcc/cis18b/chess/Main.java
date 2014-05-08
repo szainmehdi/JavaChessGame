@@ -7,7 +7,10 @@ public class Main
 
     public static void main(String[] args)
     {
-        Board board = new Board();
+
+        Application application = Application.getInstance();
+
+        /*Board board = new Board();
         Scanner keyboard = new Scanner(System.in);
         char answer;
 
@@ -22,7 +25,7 @@ public class Main
             }
             System.out.println("Print board? ");
             answer = keyboard.next().charAt(0);
-        }while(answer == 'y');
+        }while(answer == 'y');*/
 
     }
 }
