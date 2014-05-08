@@ -7,6 +7,7 @@ public class Main
 
     public static void main(String[] args)
     {
+        SwingGUI.GetInstance();
         Board board = new Board();
         Scanner keyboard = new Scanner(System.in);
         char answer;
@@ -18,7 +19,7 @@ public class Main
             System.out.println("\n\n Move piece?");
             if(keyboard.next().charAt(0) == 'y')
             {
-                board.MovePiece();
+               // board.MovePiece();
             }
             System.out.println("Print board? ");
             answer = keyboard.next().charAt(0);

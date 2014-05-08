@@ -11,22 +11,22 @@ public class Board
     int yCoordinate = 0;
     int pieceSymbol = 0;
 
-    Piece piece = new Piece();
+    //Piece piece = new Piece();
     Scanner keyboard = new Scanner(System.in);
 
     public Board()
     {
         xCoordinate = 2;
         yCoordinate = 3;
-        piece.SetPosition(xCoordinate, yCoordinate);
+       // piece.SetPosition(xCoordinate, yCoordinate);
 
-        piece.PrintPosition();
+       // piece.PrintPosition();
     }
 
     public void PrintBoard()
     {
-        InvertSymbolPosition(piece.yCoordinate);
-
+       // InvertSymbolPosition(piece.yCoordinate);
+/*
         for(int i = 0; i < 8; i++) {
             System.out.print("\n");
             for (int j = 0; j < 9; j++) {
@@ -36,8 +36,9 @@ public class Board
                 }
             }
         }
+        */
     }
-
+/*
     public void InvertSymbolPosition(int y)
     {
         int j = 8;
@@ -57,4 +58,5 @@ public class Board
     {
         piece.Move();
     }
+    */
 }

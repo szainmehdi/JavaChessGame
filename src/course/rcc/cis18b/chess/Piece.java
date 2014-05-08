@@ -1,19 +1,56 @@
 package course.rcc.cis18b.chess;
 
-import java.util.Scanner;
+import java.awt.Image;
 
 public class Piece
 {
-    int xCoordinate = 0;
-    int yCoordinate = 0;
+    private Image image;
+    private int XPosition;//Position in Pixels
+    private int YPosition;
 
-    Scanner keyboard = new Scanner(System.in);
-
-    public Piece()
+    public Piece(Image image, int xPosition, int yPosition)
     {
-
+        this.image = image;
+        this.XPosition = xPosition;
+        this.YPosition = yPosition;
     }
 
+    public Image GetImage()
+    {
+        return image;
+    }
+
+    public int GetXPosition()
+    {
+        return XPosition;
+    }
+
+    public int GetYPosition()
+    {
+        return YPosition;
+    }
+
+    public void SetXPosition(int XPosition)
+    {
+        this.XPosition = XPosition;
+    }
+
+    public void SetYPosition(int YPosition)
+    {
+        this.YPosition = YPosition;
+    }
+
+    public int GetWidth()
+    {
+        return image.getWidth(null);
+    }
+
+    public int GetHeight()
+    {
+        return image.getHeight(null);
+    }
+
+    /*
     public void SetPosition(int xCoordinate, int yCoordinate)
     {
         this.xCoordinate = xCoordinate;
@@ -27,20 +64,5 @@ public class Piece
         System.out.print("Enter new yCoordinate = ");
         yCoordinate = keyboard.nextInt();
     }
-
-    public void GetPiece()
-    {
-
-    }
-
-    public void AddPiece()
-    {
-
-    }
-
-    public void PrintPosition()
-    {
-        System.out.println("Position = (" + xCoordinate + ", " + yCoordinate + ")");
-
-    }
+    */
 }
