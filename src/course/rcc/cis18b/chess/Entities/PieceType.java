@@ -1,4 +1,4 @@
-package course.rcc.cis18b.chess;
+package course.rcc.cis18b.chess.Entities;
 
 public enum PieceType
 {
