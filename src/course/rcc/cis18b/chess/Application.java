@@ -2,6 +2,7 @@ package course.rcc.cis18b.chess;
 
 import course.rcc.cis18b.chess.Entities.Board;
 import course.rcc.cis18b.chess.Entities.Player;
+import course.rcc.cis18b.chess.GUI.SwingGuiManager;
 
 public class Application {
     private static Application application = null;
@@ -25,7 +26,7 @@ public class Application {
     private void onCreate()
     {
         // Create and instantiate all the necessary objects to start.
-        this.board = new Board();
+        this.board = new Board(new SwingGuiManager());
         this.players = new Player[NUM_PLAYERS];
 
         // Trigger the next stage of the application.
