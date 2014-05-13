@@ -20,7 +20,11 @@ public class TurnManager
 
     private TurnManager()
     {
+        this.initialize();
+    }
 
+    public Player currentPlayer() {
+        return players[turnIndex];
     }
 
     public void setPlayers(Player[] players) throws IllegalArgumentException {
@@ -41,5 +45,11 @@ public class TurnManager
             turnIndex = 0;
         }
         return turnIndex;
+    }
+
+    private void initialize() {
+        for(int i = 0; i < NUM_PLAYERS; i++) {
+            players[i] = new Player();
+        }
     }
 }
