@@ -43,7 +43,7 @@ public class Space
             throws InvalidMoveException, IllegalArgumentException
     {
         if(!this.isEmpty()) {
-            throw new InvalidMoveException("The space already contains a piece.");
+            throw new InvalidMoveException("The space already contains a piece.\n" + piece);
         } else if(piece == null) {
             throw new IllegalArgumentException("The piece provided is invalid.");
         }
