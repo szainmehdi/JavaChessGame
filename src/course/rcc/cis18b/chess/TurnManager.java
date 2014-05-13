@@ -1,6 +1,7 @@
 package course.rcc.cis18b.chess;
 
 import course.rcc.cis18b.chess.Entities.Player;
+import course.rcc.cis18b.chess.Entities.PlayerTeam;
 
 public class TurnManager
 {
@@ -8,6 +9,10 @@ public class TurnManager
 
     private static TurnManager instance = null;
     private Player[] players = new Player[NUM_PLAYERS];
+    private static PlayerTeam[] teams = {
+            PlayerTeam.WHITE,
+            PlayerTeam.BLACK
+    };
 
     private int turnIndex = 0;
 
@@ -49,7 +54,14 @@ public class TurnManager
 
     private void initialize() {
         for(int i = 0; i < NUM_PLAYERS; i++) {
-            players[i] = new Player();
+            players[i] = new Player(getTeam(i));
         }
+    }
+
+    private PlayerTeam getTeam(int i) {
+        if(i >= teams.length) {
+            i = 0;
+        }
+        return teams[i];
     }
 }

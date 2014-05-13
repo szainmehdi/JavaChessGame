@@ -8,7 +8,7 @@ public class PieceFactory
     public static Piece make(Player player, PieceType type)
     {
         MoveBehavior moveBehavior = getMoveBehavior(type);
-        String model = getModel(type);
+        String model = getModel(type, player);
         
         return new Piece(player, model, moveBehavior, type);
     }
@@ -16,7 +16,7 @@ public class PieceFactory
     public static Piece make(Player player, PieceType type, int row, int column) throws InvalidMoveException
     {
         MoveBehavior moveBehavior = getMoveBehavior(type);
-        String model = getModel(type);
+        String model = getModel(type, player);
         return new Piece(player, model, moveBehavior, row, column, type);
     }
     
@@ -35,18 +35,21 @@ public class PieceFactory
         }
     }
     
-    private static String getModel(PieceType type) {
+    private static String getModel(PieceType type, Player player) {
+        String team = player.getTeam().toString().toLowerCase();
+        String model = "";
         switch(type)
         {
-            case KING: return "";
-            case QUEEN: return "";
-            case ROOK: return "";
-            case KNIGHT: return "";
-            case BISHOP: return "";
-            case PAWN: return "";
+            case KING: model = ""; break;
+            case QUEEN: model = ""; break;
+            case ROOK: model = ""; break;
+            case KNIGHT: model = ""; break;
+            case BISHOP: model = ""; break;
+            case PAWN: model = ""; break;
 
             default:
-                return "";
+                model = "";
         }
+        return team + "_" + model;
     }
 }
