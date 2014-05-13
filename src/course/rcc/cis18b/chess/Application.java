@@ -24,7 +24,8 @@ public class Application {
     private void onCreate()
     {
         // Create and instantiate all the necessary objects to start.
-        Board.setGuiManager(new ConsoleUIManager());
+        //Board.setGuiManager(new ConsoleUIManager());
+        Board.setGuiManager(new SwingGuiManager());
 
         this.currentPlayer = TurnManager.getInstance().currentPlayer();
 
