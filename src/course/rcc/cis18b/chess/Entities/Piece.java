@@ -11,6 +11,7 @@ public class Piece {
 
     private Player player = null;
     private String model = null;
+    public static final String MODEL_EXTENSION = ".png";
     private MoveBehavior moveBehavior = null;
     private int row;
     private int column;
@@ -91,6 +92,10 @@ public class Piece {
         return player;
     }
 
+    /**
+     * Returns the image associated with the piece.
+     * @return
+     */
     public String getModel() {
         return model;
     }

@@ -1,7 +1,8 @@
 package course.rcc.cis18b.chess.GUI;
 
-import course.rcc.cis18b.chess.Entities.PieceType;
+import course.rcc.cis18b.chess.Entities.Piece;
 import course.rcc.cis18b.chess.Entities.Board;
+import course.rcc.cis18b.chess.Entities.Space;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -9,41 +10,49 @@ import javax.swing.JPanel;
 import java.net.URL;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SwingGuiManager extends JPanel implements GuiManager
 {
-    public static final int ROWS = 8;
-    public static final int COLUMNS = 8;
-    private int offset = 100;//Tile size
-    private int center = 15;//Value to center pieces inside the tile
-    private Image tile;
+//    public static final int ROWS = 8;
+//    public static final int COLUMNS = 8;
+    public static final String IMAGES_PATH = "../Images/";
+
+    /**
+     * Size of each tile.
+     */
+    private static final int TILE_SIZE = 100;
+
+    /**
+     * Value to offset pieces inside each tile
+     */
+    private static final int OFFSET = 15;
+
     private Image backgroundImage;
     private Image blackTile;
     private Image whiteTile;
-    private Image pieceImage;
-    private Image[][] grid = new Image[ROWS][COLUMNS];
-    private int[][] xPositions = new int[ROWS][COLUMNS];
-    private int[][] yPositions = new int[ROWS][COLUMNS];
-    private int xPosition;
-    private int yPosition;
-    String colorPiece;
+
+//    private Image pieceImage;
+//    private Image[][] grid = new Image[ROWS][COLUMNS];
+//    private int[][] xPositions = new int[ROWS][COLUMNS];
+//    private int[][] yPositions = new int[ROWS][COLUMNS];
+//    private int xPosition;
+//    private int yPosition;
+//    String colorPiece;
 
 
     public SwingGuiManager()
     {
         createWindow();
         createBoard();
-        colorPiece = "Black";
-        createPieces(colorPiece);
-        colorPiece = "White";
-        createPieces(colorPiece);
-        render();
-
-        Controller controller = new Controller(grid, xPositions, yPositions, this);
-        addMouseListener(controller);
-        addMouseMotionListener(controller);
+//        colorPiece = "Black";
+//        createPieces(colorPiece);
+//        colorPiece = "White";
+//        createPieces(colorPiece);
+//        render();
+//
+//        Controller controller = new Controller(grid, xPositions, yPositions, this);
+//        addMouseListener(controller);
+//        addMouseMotionListener(controller);
     }
 
     private void createWindow()
@@ -67,17 +76,18 @@ public class SwingGuiManager extends JPanel implements GuiManager
 
     private Image getImage(String filename)
     {
-        String path = "../Images/";
-        Image image;
-
-        path += filename;
+        String path = IMAGES_PATH + filename;
         URL urlImage = getClass().getResource(path);
-        image = new ImageIcon(urlImage).getImage();
-
-        return image;
+        return new ImageIcon(urlImage).getImage();
     }
 
-    private Image createPiece(PieceType type, String color)
+    public Image getImage(Piece piece) {
+        String path = IMAGES_PATH + piece.getModel();
+        URL urlImage = getClass().getResource(path);
+        return new ImageIcon(urlImage).getImage();
+    }
+
+    /*private Image createPiece(PieceType type, String color)
     {
         String filename;
         filename = (color.equals("Black"))?"black":"white";
@@ -106,9 +116,9 @@ public class SwingGuiManager extends JPanel implements GuiManager
 
         filename += ".png";
         return getImage(filename);
-    }
+    }*/
 
-    private void createPieces(String color)
+    /*private void createPieces(String color)
     {
         if(color.equals("Black"))
         {
@@ -154,7 +164,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
                 grid[6][j] = pieceImage;
             }
         }
-    }
+    }*/
 
     @Override
     protected void paintComponent(Graphics graphics)
@@ -163,36 +173,46 @@ public class SwingGuiManager extends JPanel implements GuiManager
         graphics.drawImage(backgroundImage, 0, 0, null);
 
 
+        Space[][] grid = Board.getInstance().grid;
 
         //Draws the tiles
-        for (int i = 0; i < ROWS; i++)
+        for (int row = 0; row < Board.ROWS; row++)
         {
-            for (int j = 0; j < COLUMNS; j++)
+            for (int column = 0; column < Board.COLUMNS; column++)
             {
-                xPositions[i][j] = offset * i;
-                yPositions[i][j] = offset * j;
+//                xPositions[i][j] = TILE_SIZE * i;
+//                yPositions[i][j] = TILE_SIZE * j;
 
-                System.out.println("XPosition: " + xPositions[i][j]);
-                System.out.println("YPosition: " + yPositions[i][j]);
+                int x = TILE_SIZE * column;
+                int y = TILE_SIZE * row;
 
-                tile = ((i % 2) == (j % 2)) ? blackTile : whiteTile;
-                graphics.drawImage(tile, xPositions[i][j], yPositions[i][j], null);
+                // Alternate color for tile background
+                Image tile = ((row % 2) == (column % 2)) ? whiteTile : blackTile;
+                graphics.drawImage(tile, x, y, null);
             }
         }
 
         //Draws the pieces
-        for (int i = 0; i < ROWS; i++)
+        for (int row = 0; row < Board.ROWS; row++)
         {
-            for (int j = 0; j < COLUMNS; j++)
+            for (int column = 0; column < Board.COLUMNS; column++)
             {
-                graphics.drawImage(grid[j][i], xPositions[i][j] + center, yPositions[i][j] + center, null);
+                try {
+                    Piece piece = Board.getInstance().getSpace(row, column).getPiece();
+                    Image image = getImage(piece);
+                    int x = TILE_SIZE * column;
+                    int y = TILE_SIZE * row;
+                    graphics.drawImage(image, x + OFFSET, y + OFFSET, null);
+                } catch(Exception e) {
+
+                }
             }
         }
     }
 
     public void render()
     {
-        System.out.println("You called me bro?");
+//        System.out.println("You called me bro?");
         repaint();
     }
 }

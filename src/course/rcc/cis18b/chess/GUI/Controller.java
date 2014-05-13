@@ -5,21 +5,26 @@ import java.awt.event.*;
 
 public class Controller implements MouseListener, MouseMotionListener, KeyListener
 {
-    public static final int ROWS = 8;
-    public static final int COLUMNS = 8;
-    private Image[][] grid = new Image[ROWS][COLUMNS];
-    private int[][] xPositions = new int[ROWS][COLUMNS];
-    private int[][] yPositions = new int[ROWS][COLUMNS];
-    private SwingGuiManager swingGuiManager;
-    private Image dragPiece;
-    private boolean isBreak;
+//    public static final int ROWS = 8;
+//    public static final int COLUMNS = 8;
+//    private Image[][] grid = new Image[ROWS][COLUMNS];
+//    private int[][] xPositions = new int[ROWS][COLUMNS];
+//    private int[][] yPositions = new int[ROWS][COLUMNS];
+//    private SwingGuiManager swingGuiManager;
+//    private Image dragPiece;
+//    private boolean isBreak;
+
+
+    public Controller() {
+
+    }
 
     public Controller(Image[][] grid, int[][] xPositions, int[][] yPositions, SwingGuiManager swingGuiManager)
     {
-        this.grid = grid;
-        this.xPositions = xPositions;
-        this.yPositions = yPositions;
-        this.swingGuiManager = swingGuiManager;
+//        this.grid = grid;
+//        this.xPositions = xPositions;
+//        this.yPositions = yPositions;
+//        this.swingGuiManager = swingGuiManager;
     }
 
     @Override
@@ -45,7 +50,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     @Override
     public void mousePressed(MouseEvent event)
     {
-        int mouseXPosition = event.getPoint().x;
+        /*int mouseXPosition = event.getPoint().x;
         int mouseYPosition = event.getPoint().y;
 
         for(int i = 0; i < grid.length; i++)
@@ -64,16 +69,15 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
             if(isBreak == true)
                 break;
         }
+*/
 
-
-        System.out.println("X: " + mouseXPosition);
-        System.out.println("Y: " + mouseYPosition);
+        System.out.println(event);
     }
 
     @Override
     public void mouseReleased(MouseEvent event)
     {
-        dragPiece = null;
+        //dragPiece = null;
     }
 
     @Override
@@ -89,12 +93,12 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     @Override
     public void mouseDragged(MouseEvent event)
     {
-        if(dragPiece != null)
-        {
+        //if(dragPiece != null)
+        //{
             //dragPiece.setX(evt.getPoint().x - this.dragOffsetX);
             //dragPiece.setY(evt.getPoint().y - this.dragOffsetY);
             //SwingGuiManager.render();
-        }
+        //}
     }
 
     @Override
@@ -104,7 +108,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
 
     private boolean selectedPiece(Image selectedPiece, int mouseXPosition, int mouseYPosition)
     {
-        for(int i = 0; i < grid.length; i++)
+        /*for(int i = 0; i < grid.length; i++)
         {
             for(int j = 0; j < grid.length; j++)
             {
@@ -119,7 +123,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
             }
             if(isBreak == true)
                 break;
-        }
+        }*/
         return true;
     }
 }

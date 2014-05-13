@@ -2,6 +2,7 @@ package course.rcc.cis18b.chess;
 
 import course.rcc.cis18b.chess.Entities.*;
 import course.rcc.cis18b.chess.GUI.ConsoleUIManager;
+import course.rcc.cis18b.chess.GUI.GuiManager;
 import course.rcc.cis18b.chess.GUI.SwingGuiManager;
 
 public class Application {
@@ -9,7 +10,15 @@ public class Application {
 
     public Board board = null;
     public Player currentPlayer = null;
+    private static GuiManager guiManager = null;
 
+    public static void setGuiManager(GuiManager m) {
+        guiManager = m;
+    }
+
+    public static GuiManager getGuiManager() {
+        return guiManager;
+    }
 
     public static Application getInstance() {
         if(application == null)
@@ -23,10 +32,6 @@ public class Application {
 
     private void onCreate()
     {
-        // Create and instantiate all the necessary objects to start.
-        //Board.setGuiManager(new ConsoleUIManager());
-        Board.setGuiManager(new SwingGuiManager());
-
         this.currentPlayer = TurnManager.getInstance().currentPlayer();
 
         // Trigger the next stage of the application.
@@ -40,25 +45,24 @@ public class Application {
         board.reset();
         board.render();
 
-        try {
+        /*try {
 
             board.getSpace(1, 3).getPiece().move(2,3);
             board.render();
 
-            currentPlayer = TurnManager.getInstance().next();
+            switchPlayer();
 
             Piece piece = board.getSpace(6, 3).getPiece();
             piece.move(5,3);
             board.render();
+            switchPlayer();
 
-            currentPlayer = TurnManager.getInstance().next();
-
-            board.getSpace(1, 4).getPiece().move(2,4);
+            board.getSpace(1, 4).getPiece().move(2, 4);
             board.render();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
         /*
         do {
@@ -100,5 +104,9 @@ public class Application {
     public void update()
     {
         this.onUpdate();
+    }
+
+    public void switchPlayer() {
+        currentPlayer = TurnManager.getInstance().next();
     }
 }

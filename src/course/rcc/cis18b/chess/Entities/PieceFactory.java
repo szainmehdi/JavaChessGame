@@ -37,19 +37,8 @@ public class PieceFactory
     
     private static String getModel(PieceType type, Player player) {
         String team = player.getTeam().toString().toLowerCase();
-        String model = "";
-        switch(type)
-        {
-            case KING: model = ""; break;
-            case QUEEN: model = ""; break;
-            case ROOK: model = ""; break;
-            case KNIGHT: model = ""; break;
-            case BISHOP: model = ""; break;
-            case PAWN: model = ""; break;
+        String model = type.toString().toLowerCase();
 
-            default:
-                model = "";
-        }
-        return team + "_" + model;
+        return team + "_" + model + Piece.MODEL_EXTENSION;
     }
 }

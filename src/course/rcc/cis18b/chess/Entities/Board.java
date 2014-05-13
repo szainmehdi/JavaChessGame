@@ -1,8 +1,7 @@
 package course.rcc.cis18b.chess.Entities;
 
+import course.rcc.cis18b.chess.Application;
 import course.rcc.cis18b.chess.Exceptions.InvalidMoveException;
-import course.rcc.cis18b.chess.GUI.ConsoleUIManager;
-import course.rcc.cis18b.chess.GUI.GuiManager;
 import course.rcc.cis18b.chess.TurnManager;
 
 public class Board
@@ -12,8 +11,6 @@ public class Board
     public Space[][] grid = new Space[ROWS][COLUMNS];
 
     private static Board board = null;
-
-    private static GuiManager guiManager = new ConsoleUIManager();
 
     private Board() {
         this.initialize();
@@ -25,14 +22,10 @@ public class Board
         return board;
     }
 
-    public static void setGuiManager(GuiManager gm) {
-        guiManager = gm;
-    }
-
     public void render() {
 
         // Draw the grid with the pieces.
-        this.guiManager.render();
+        Application.getGuiManager().render();
 
     }
 
