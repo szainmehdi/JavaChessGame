@@ -70,7 +70,9 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
         try {
             if(selectedPiece == null) {
                 Piece piece = Board.getInstance().getSpace(row,column).getPiece();
-
+                if(piece == null) {
+                    return;
+                }
                 if(piece.getPlayer() != TurnManager.getInstance().currentPlayer()) {
                     throw new UnauthorizedMoveException("This piece does not belong to the current player.");
                 }
