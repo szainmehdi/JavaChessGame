@@ -64,4 +64,8 @@ public class TurnManager
         }
         return teams[i];
     }
+
+    public void resetTurns() {
+        turnIndex = 0;
+    }
 }

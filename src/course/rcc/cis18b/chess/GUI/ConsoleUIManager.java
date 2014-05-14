@@ -3,7 +3,7 @@ package course.rcc.cis18b.chess.GUI;
 import course.rcc.cis18b.chess.Entities.Board;
 import course.rcc.cis18b.chess.Entities.Space;
 
-public class ConsoleUIManager implements GuiManager {
+abstract public class ConsoleUIManager implements GuiManager {
     @Override
     public void render() {
 

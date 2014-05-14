@@ -25,4 +25,12 @@ public class Player
     public PlayerTeam getTeam() {
         return team;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", team=" + team.toString() +
+                '}';
+    }
 }

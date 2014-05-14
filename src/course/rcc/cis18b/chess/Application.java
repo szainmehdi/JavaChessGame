@@ -9,7 +9,6 @@ public class Application {
     private static Application application = null;
 
     public Board board = null;
-    public Player currentPlayer = null;
     private static GuiManager guiManager = null;
 
     public static void setGuiManager(GuiManager m) {
@@ -32,8 +31,6 @@ public class Application {
 
     private void onCreate()
     {
-        this.currentPlayer = TurnManager.getInstance().currentPlayer();
-
         // Trigger the next stage of the application.
         this.onStart();
     }
@@ -44,36 +41,6 @@ public class Application {
         Board board = Board.getInstance();
         board.reset();
         board.render();
-
-        /*try {
-
-            board.getSpace(1, 3).getPiece().move(2,3);
-            board.render();
-
-            switchPlayer();
-
-            Piece piece = board.getSpace(6, 3).getPiece();
-            piece.move(5,3);
-            board.render();
-            switchPlayer();
-
-            board.getSpace(1, 4).getPiece().move(2, 4);
-            board.render();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }*/
-
-        /*
-        do {
-            // Prompt the user to select a piece and an empty space to move to.
-
-            // Make the move happen.
-
-            // Switch player.
-        } while (// game not over);
-         */
-
     }
 
     private void onPause()
@@ -104,9 +71,5 @@ public class Application {
     public void update()
     {
         this.onUpdate();
-    }
-
-    public void switchPlayer() {
-        currentPlayer = TurnManager.getInstance().next();
     }
 }

@@ -1,5 +1,12 @@
 package course.rcc.cis18b.chess.GUI;
 
+import course.rcc.cis18b.chess.Application;
+import course.rcc.cis18b.chess.Entities.Board;
+import course.rcc.cis18b.chess.Entities.Piece;
+import course.rcc.cis18b.chess.Exceptions.InvalidMoveException;
+import course.rcc.cis18b.chess.Exceptions.UnauthorizedMoveException;
+import course.rcc.cis18b.chess.TurnManager;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -13,6 +20,8 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
 //    private SwingGuiManager swingGuiManager;
 //    private Image dragPiece;
 //    private boolean isBreak;
+
+    private Piece selectedPiece = null;
 
 
     public Controller() {
@@ -50,34 +59,50 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     @Override
     public void mousePressed(MouseEvent event)
     {
-        /*int mouseXPosition = event.getPoint().x;
+        int mouseXPosition = event.getPoint().x;
         int mouseYPosition = event.getPoint().y;
 
-        for(int i = 0; i < grid.length; i++)
-        {
-            for(int j = 0; j < grid.length; j++)
-            {
-                Image piece = grid[i][j];
+        double tileSize = Application.getGuiManager().getTileSize();
 
-                if(selectedPiece(piece, mouseXPosition, mouseYPosition))
-                {
-                    dragPiece = piece;
-                    isBreak = true;
-                    break;
+        int column = (int)Math.floor(mouseXPosition/tileSize);
+        int row = (int)Math.floor(mouseYPosition/tileSize);
+
+        try {
+            if(selectedPiece == null) {
+                Piece piece = Board.getInstance().getSpace(row,column).getPiece();
+
+                if(piece.getPlayer() != TurnManager.getInstance().currentPlayer()) {
+                    throw new UnauthorizedMoveException("This piece does not belong to the current player.");
                 }
-            }
-            if(isBreak == true)
-                break;
-        }
-*/
 
-        System.out.println(event);
+                System.out.println("Location Clicked: (" + mouseXPosition + ", " + mouseYPosition + ")");
+                System.out.println("Grid Box: (" + row + ", " + column + ")");
+
+                selectedPiece = piece;
+            } else { //if a piece is selected
+                selectedPiece.move(row, column);
+                TurnManager.getInstance().next();
+                Board.getInstance().render();
+                clearSelection();
+            }
+
+        } catch(IndexOutOfBoundsException e) {
+            //Invalid space, ignore click.
+        } catch (InvalidMoveException e) {
+            System.err.println(e.getMessage());
+            clearSelection();
+        } catch (UnauthorizedMoveException e) {
+            System.err.println(e.getMessage());
+            clearSelection();
+        } catch (Exception e) {
+            System.err.println("Unknown error occured: " + e.getMessage());
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent event)
     {
-        //dragPiece = null;
+
     }
 
     @Override
@@ -125,5 +150,9 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
                 break;
         }*/
         return true;
+    }
+
+    private void clearSelection() {
+        selectedPiece = null;
     }
 }

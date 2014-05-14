@@ -48,6 +48,8 @@ public class Piece {
                     throw new InvalidMoveException("Cannot move to this space: (" +
                             row + ", " + column + ")");
                 }
+            } else {
+                throw new InvalidMoveException("Cannot move to this location.");
             }
         } else {
             throw new UnauthorizedMoveException("This piece does not belong to the current player.");

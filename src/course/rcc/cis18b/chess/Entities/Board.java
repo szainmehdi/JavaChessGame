@@ -22,6 +22,10 @@ public class Board
         return board;
     }
 
+
+    /**
+     * Draw the board with the pieces.
+     */
     public void render() {
 
         // Draw the grid with the pieces.
@@ -99,6 +103,9 @@ public class Board
             PieceFactory.make(player,PieceType.BISHOP,row, 5);
             PieceFactory.make(player,PieceType.KNIGHT,row, 6);
             PieceFactory.make(player,PieceType.ROOK,row, 7);
+
+            //Reset to first player.
+            TurnManager.getInstance().resetTurns();
 
         } catch (InvalidMoveException e) {
             // Intentionally empty.
