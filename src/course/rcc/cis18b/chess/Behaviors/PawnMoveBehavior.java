@@ -5,6 +5,8 @@ import course.rcc.cis18b.chess.Entities.Board;
 import course.rcc.cis18b.chess.Entities.Piece;
 import course.rcc.cis18b.chess.Entities.PlayerTeam;
 
+
+
 public class PawnMoveBehavior implements MoveBehavior {
 
     /**

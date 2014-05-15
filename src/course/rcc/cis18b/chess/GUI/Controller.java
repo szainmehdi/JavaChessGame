@@ -10,30 +10,13 @@ import course.rcc.cis18b.chess.TurnManager;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Controller implements MouseListener, MouseMotionListener, KeyListener
-{
-//    public static final int ROWS = 8;
-//    public static final int COLUMNS = 8;
-//    private Image[][] grid = new Image[ROWS][COLUMNS];
-//    private int[][] xPositions = new int[ROWS][COLUMNS];
-//    private int[][] yPositions = new int[ROWS][COLUMNS];
-//    private SwingGuiManager swingGuiManager;
-//    private Image dragPiece;
-//    private boolean isBreak;
+public class Controller implements MouseListener, MouseMotionListener, KeyListener {
 
     private Piece selectedPiece = null;
 
 
     public Controller() {
 
-    }
-
-    public Controller(Image[][] grid, int[][] xPositions, int[][] yPositions, SwingGuiManager swingGuiManager)
-    {
-//        this.grid = grid;
-//        this.xPositions = xPositions;
-//        this.yPositions = yPositions;
-//        this.swingGuiManager = swingGuiManager;
     }
 
     @Override
@@ -57,8 +40,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     }
 
     @Override
-    public void mousePressed(MouseEvent event)
-    {
+    public void mousePressed(MouseEvent event) {
         int mouseXPosition = event.getPoint().x;
         int mouseYPosition = event.getPoint().y;
 
@@ -76,12 +58,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
                 if(piece.getPlayer() != TurnManager.getInstance().currentPlayer()) {
                     throw new UnauthorizedMoveException("This piece does not belong to the current player.");
                 }
-
-                System.out.println("Location Clicked: (" + mouseXPosition + ", " + mouseYPosition + ")");
-                System.out.println("Grid Box: (" + row + ", " + column + ")");
-
                 selectedPiece = piece;
-
             } else { //if a piece is selected
                 selectedPiece.move(row, column);
                 TurnManager.getInstance().next();
@@ -91,16 +68,13 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
         } catch(IndexOutOfBoundsException e) {
             //Invalid space, ignore click.
         } catch (InvalidMoveException e) {
-//            System.err.println(e.getMessage());
             Application.getGuiManager().showAlert(e.getMessage());
             clearSelection();
         } catch (UnauthorizedMoveException e) {
-//            System.err.println(e.getMessage());
             Application.getGuiManager().showAlert(e.getMessage());
 
             clearSelection();
         } catch (Exception e) {
-//            System.err.println("Unknown error occured: " + e.getMessage());
             Application.getGuiManager().showAlert("Unknown error occured: " + e.getMessage());
 
         } finally {
@@ -109,8 +83,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     }
 
     @Override
-    public void mouseReleased(MouseEvent event)
-    {
+    public void mouseReleased(MouseEvent event) {
 
     }
 
@@ -125,40 +98,13 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     }
 
     @Override
-    public void mouseDragged(MouseEvent event)
-    {
-        //if(dragPiece != null)
-        //{
-            //dragPiece.setX(evt.getPoint().x - this.dragOffsetX);
-            //dragPiece.setY(evt.getPoint().y - this.dragOffsetY);
-            //SwingGuiManager.render();
-        //}
+    public void mouseDragged(MouseEvent event) {
+
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
 
-    }
-
-    private boolean selectedPiece(Image selectedPiece, int mouseXPosition, int mouseYPosition)
-    {
-        /*for(int i = 0; i < grid.length; i++)
-        {
-            for(int j = 0; j < grid.length; j++)
-            {
-                if(xPositions[i][j] <= mouseXPosition
-                        && xPositions[i][j] + selectedPiece.getWidth(null) >= mouseXPosition
-                        && yPositions[i][j] <= mouseXPosition
-                        && yPositions[i][j] + selectedPiece.getHeight(null) >= mouseYPosition)
-                {
-                    isBreak = true;
-                    break;
-                }
-            }
-            if(isBreak == true)
-                break;
-        }*/
-        return true;
     }
 
     private void clearSelection() {

@@ -3,8 +3,7 @@ package course.rcc.cis18b.chess;
 import course.rcc.cis18b.chess.Entities.Player;
 import course.rcc.cis18b.chess.Entities.PlayerTeam;
 
-public class TurnManager
-{
+public class TurnManager {
     public static final int NUM_PLAYERS = 2;
 
     private static TurnManager instance = null;

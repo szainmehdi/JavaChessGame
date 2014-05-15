@@ -3,8 +3,7 @@ package course.rcc.cis18b.chess.Entities;
 import com.sun.istack.internal.Nullable;
 import course.rcc.cis18b.chess.Exceptions.InvalidMoveException;
 
-public class Space
-{
+public class Space {
     /**
      * The game-piece that this space holds.
      */

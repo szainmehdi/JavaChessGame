@@ -8,8 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
-public class SwingGuiManager extends JPanel implements GuiManager
-{
+public class SwingGuiManager extends JPanel implements GuiManager {
     /**
      * Prefix for the image path.
      */

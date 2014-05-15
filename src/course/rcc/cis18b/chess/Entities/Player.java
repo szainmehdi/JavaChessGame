@@ -1,7 +1,6 @@
 package course.rcc.cis18b.chess.Entities;
 
-public class Player
-{
+public class Player {
     private String name = "";
     private PlayerTeam team = null;
 
