@@ -33,7 +33,7 @@ public class ConsoleUIManager implements GuiManager {
 
     @Override
     public int getTileSize() {
-        return 0;
+        return 1;
     }
 
     @Override
