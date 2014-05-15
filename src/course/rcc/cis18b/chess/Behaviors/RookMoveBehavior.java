@@ -3,7 +3,7 @@ package course.rcc.cis18b.chess.Behaviors;
 import course.rcc.cis18b.chess.Entities.Board;
 import course.rcc.cis18b.chess.Entities.Piece;
 
-public class BishopMoveBehavior implements MoveBehavior {
+public class RookMoveBehavior implements MoveBehavior {
     /**
      * Determine whether a move is legal according to the rules of each game.
      *
@@ -20,11 +20,9 @@ public class BishopMoveBehavior implements MoveBehavior {
             float rowDifference = Math.abs(row - piece.getRow());
             float columnDifference = Math.abs(column - piece.getColumn());
 
-            // if the vertical distance is the same as the horizontal
-            // distance, then the move is diagonal, and therefore,
-            // a valid move for a Bishop to make, as long as both are
-            // not zero.
-            return ((rowDifference == columnDifference) && (rowDifference > 0 && rowDifference > 0));
+            // Only the rowDifference or columnDifference can be >0 at one time
+            // for the move to be valid.
+            return ((rowDifference == 0 && columnDifference >0) || (rowDifference >0 && columnDifference == 0));
 
         } else {
             return false;

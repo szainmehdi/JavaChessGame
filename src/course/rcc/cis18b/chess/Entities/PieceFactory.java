@@ -23,11 +23,11 @@ public class PieceFactory
     private static MoveBehavior getMoveBehavior(PieceType type) {
         switch(type)
         {
-            case KING: return new PawnMoveBehavior();
-            case QUEEN: return new PawnMoveBehavior();
-            case ROOK: return new PawnMoveBehavior();
-            case KNIGHT: return new PawnMoveBehavior();
-            case BISHOP: return new PawnMoveBehavior();
+            case KING: return new KingMoveBehavior();
+            case QUEEN: return new QueenMoveBehavior();
+            case ROOK: return new RookMoveBehavior();
+            case KNIGHT: return new KnightMoveBehavior();
+            case BISHOP: return new BishopMoveBehavior();
             case PAWN: return new PawnMoveBehavior();
                 
             default:
