@@ -85,20 +85,26 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
             } else { //if a piece is selected
                 selectedPiece.move(row, column);
                 TurnManager.getInstance().next();
-                Board.getInstance().render();
                 clearSelection();
             }
 
         } catch(IndexOutOfBoundsException e) {
             //Invalid space, ignore click.
         } catch (InvalidMoveException e) {
-            System.err.println(e.getMessage());
+//            System.err.println(e.getMessage());
+            Application.getGuiManager().showAlert(e.getMessage());
             clearSelection();
         } catch (UnauthorizedMoveException e) {
-            System.err.println(e.getMessage());
+//            System.err.println(e.getMessage());
+            Application.getGuiManager().showAlert(e.getMessage());
+
             clearSelection();
         } catch (Exception e) {
-            System.err.println("Unknown error occured: " + e.getMessage());
+//            System.err.println("Unknown error occured: " + e.getMessage());
+            Application.getGuiManager().showAlert("Unknown error occured: " + e.getMessage());
+
+        } finally {
+            Board.getInstance().render();
         }
     }
 

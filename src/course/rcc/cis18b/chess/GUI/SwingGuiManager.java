@@ -82,6 +82,8 @@ public class SwingGuiManager extends JPanel implements GuiManager
         graphics.drawImage(backgroundImage, 0, 0, null);
 
 
+
+
         Space[][] grid = Board.getInstance().grid;
 
         //Draws the tiles
@@ -97,6 +99,19 @@ public class SwingGuiManager extends JPanel implements GuiManager
                 Image tile = ((row % 2) == (column % 2)) ? whiteTile : blackTile;
                 graphics.drawImage(tile, x, y, null);
             }
+        }
+
+
+
+        //Draw selected indicators
+        Piece selectedPiece = controller.getSelectedPiece();
+        if(selectedPiece != null) {
+            int row = selectedPiece.getRow();
+            int col = selectedPiece.getColumn();
+
+            Image glow = getImage("SelectedPieceGlow.png");
+
+            graphics.drawImage(glow, col * getTileSize(), row * getTileSize(), null);
         }
 
         //Draws the pieces
@@ -115,11 +130,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
                 }
             }        }
 
-        //Draw selected indicators
-        Piece selectedPiece = controller.getSelectedPiece();
-        if(selectedPiece != null) {
 
-        }
 
         //Draw the extra info.
         String currentTeam = TurnManager.getInstance().currentPlayer().getTeam().toString();
@@ -130,6 +141,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
         add(labelCurrentPlayer);
 
         labelCurrentPlayer.setLocation(950,100);
+
     }
 
     @Override
@@ -139,7 +151,17 @@ public class SwingGuiManager extends JPanel implements GuiManager
     }
 
     @Override
-    public double getTileSize() {
+    public int getTileSize() {
         return TILE_SIZE;
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        JOptionPane.showMessageDialog(null, msg);
+    }
+
+    @Override
+    public void showAlert(String msg) {
+        JOptionPane.showMessageDialog(null, msg, "Alert!", JOptionPane.ERROR_MESSAGE);
     }
 }

@@ -32,8 +32,20 @@ public class ConsoleUIManager implements GuiManager {
     }
 
     @Override
-    public double getTileSize() {
+    public int getTileSize() {
         return 0;
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        System.out.println(msg);
+    }
+
+
+    @Override
+    public void showAlert(String msg) {
+        System.err.println(msg);
+
     }
 }
 

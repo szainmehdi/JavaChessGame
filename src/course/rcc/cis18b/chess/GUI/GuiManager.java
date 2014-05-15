@@ -4,6 +4,10 @@ public interface GuiManager {
 
     public void render();
 
-    public double getTileSize();
+    public int getTileSize();
+
+    public void showMessage(String msg);
+
+    public void showAlert(String msg);
 
 }
