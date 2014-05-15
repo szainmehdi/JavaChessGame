@@ -2,8 +2,6 @@ package course.rcc.cis18b.chess.GUI;
 
 import course.rcc.cis18b.chess.Entities.Piece;
 import course.rcc.cis18b.chess.Entities.Board;
-import course.rcc.cis18b.chess.Entities.Player;
-import course.rcc.cis18b.chess.Entities.Space;
 import course.rcc.cis18b.chess.TurnManager;
 
 import javax.swing.*;
@@ -12,9 +10,14 @@ import java.net.URL;
 
 public class SwingGuiManager extends JPanel implements GuiManager
 {
-
+    /**
+     * Prefix for the image path.
+     */
     public static final String IMAGES_PATH = "../Images/";
 
+    /**
+     * Store a reference to the controller.
+     */
     private Controller controller = new Controller();
 
     /**
@@ -27,8 +30,14 @@ public class SwingGuiManager extends JPanel implements GuiManager
      */
     private static final int OFFSET = 15;
 
+    /**
+     * A label to display the current user's turn.
+     */
     private JLabel labelCurrentPlayer = new JLabel();
 
+    /**
+     * References to assets.
+     */
     private Image backgroundImage;
     private Image blackTile;
     private Image whiteTile;
@@ -36,7 +45,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
     public SwingGuiManager()
     {
         createWindow();
-        createBoard();
+        loadAssets();
 
         addMouseListener(controller);
         addMouseMotionListener(controller);
@@ -54,7 +63,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
         frame.setLocationRelativeTo(null);
     }
 
-    public void createBoard()
+    public void loadAssets()
     {
         backgroundImage = getImage("WoodBackground.jpg");
         blackTile = getImage("BlackTile.jpg");
@@ -74,6 +83,10 @@ public class SwingGuiManager extends JPanel implements GuiManager
         return new ImageIcon(urlImage).getImage();
     }
 
+    /**
+     * Update the screen with the latest information.
+     * @param graphics
+     */
     @Override
     protected void paintComponent(Graphics graphics)
     {
