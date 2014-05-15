@@ -77,16 +77,10 @@ public class SwingGuiManager extends JPanel implements GuiManager
     @Override
     protected void paintComponent(Graphics graphics)
     {
-
-        //Draws background image
+        // Draws background image
         graphics.drawImage(backgroundImage, 0, 0, null);
 
-
-
-
-        Space[][] grid = Board.getInstance().grid;
-
-        //Draws the tiles
+        // Draws the tiles
         for (int row = 0; row < Board.ROWS; row++)
         {
             for (int column = 0; column < Board.COLUMNS; column++)
@@ -101,9 +95,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
             }
         }
 
-
-
-        //Draw selected indicators
+        //Draw selected indicator
         Piece selectedPiece = controller.getSelectedPiece();
         if(selectedPiece != null) {
             int row = selectedPiece.getRow();
@@ -114,7 +106,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
             graphics.drawImage(glow, col * getTileSize(), row * getTileSize(), null);
         }
 
-        //Draws the pieces
+        // Draws the pieces
         for (int row = 0; row < Board.ROWS; row++)
         {
             for (int column = 0; column < Board.COLUMNS; column++)
@@ -128,11 +120,10 @@ public class SwingGuiManager extends JPanel implements GuiManager
                 } catch(Exception e) {
 
                 }
-            }        }
+            }
+        }
 
-
-
-        //Draw the extra info.
+        // Draw the extra info.
         String currentTeam = TurnManager.getInstance().currentPlayer().getTeam().toString();
         labelCurrentPlayer.setText("Current Player: " + currentTeam);
         labelCurrentPlayer.setFont(new Font("sans-serif", Font.BOLD, 20));
@@ -141,7 +132,6 @@ public class SwingGuiManager extends JPanel implements GuiManager
         add(labelCurrentPlayer);
 
         labelCurrentPlayer.setLocation(950,100);
-
     }
 
     @Override
