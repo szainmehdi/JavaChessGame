@@ -7,23 +7,7 @@ import course.rcc.cis18b.chess.GUI.SwingGuiManager;
 
 public class Application {
     private static Application application = null;
-
-    public Board board = null;
     private static GuiManager guiManager = null;
-
-    public static void setGuiManager(GuiManager m) {
-        guiManager = m;
-    }
-
-    public static GuiManager getGuiManager() {
-        return guiManager;
-    }
-
-    public static Application getInstance() {
-        if(application == null)
-            application = new Application();
-        return application;
-    }
 
     private Application() {
         this.onCreate();
@@ -43,33 +27,15 @@ public class Application {
         board.render();
     }
 
-    private void onPause()
-    {
-
+    public static void setGuiManager(GuiManager m) {
+        guiManager = m;
     }
-
-    private void onResume()
-    {
-
+    public static GuiManager getGuiManager() {
+        return guiManager;
     }
-
-    private void onUpdate()
-    {
-        board.render();
-    }
-
-    public void pause()
-    {
-        this.onPause();
-    }
-
-    public void resume()
-    {
-        this.onResume();
-    }
-
-    public void update()
-    {
-        this.onUpdate();
+    public static Application getInstance() {
+        if(application == null)
+            application = new Application();
+        return application;
     }
 }
