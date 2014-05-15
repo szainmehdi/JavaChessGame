@@ -81,6 +81,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
                 System.out.println("Grid Box: (" + row + ", " + column + ")");
 
                 selectedPiece = piece;
+
             } else { //if a piece is selected
                 selectedPiece.move(row, column);
                 TurnManager.getInstance().next();
@@ -156,5 +157,9 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
 
     private void clearSelection() {
         selectedPiece = null;
+    }
+
+    public Piece getSelectedPiece() {
+        return selectedPiece;
     }
 }

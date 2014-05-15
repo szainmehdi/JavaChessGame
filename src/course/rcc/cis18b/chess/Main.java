@@ -1,5 +1,6 @@
 package course.rcc.cis18b.chess;
 
+import course.rcc.cis18b.chess.GUI.ConsoleUIManager;
 import course.rcc.cis18b.chess.GUI.SwingGuiManager;
 
 public class Main

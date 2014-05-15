@@ -7,15 +7,15 @@ import course.rcc.cis18b.chess.Entities.Space;
 import course.rcc.cis18b.chess.TurnManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.net.URL;
-import java.awt.Graphics;
-import java.awt.Image;
 
 public class SwingGuiManager extends JPanel implements GuiManager
 {
-//    public static final int ROWS = 8;
-//    public static final int COLUMNS = 8;
+
     public static final String IMAGES_PATH = "../Images/";
+
+    private Controller controller = new Controller();
 
     /**
      * Size of each tile.
@@ -27,6 +27,8 @@ public class SwingGuiManager extends JPanel implements GuiManager
      */
     private static final int OFFSET = 15;
 
+    private JLabel labelCurrentPlayer = new JLabel();
+
     private Image backgroundImage;
     private Image blackTile;
     private Image whiteTile;
@@ -35,13 +37,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
     {
         createWindow();
         createBoard();
-//        colorPiece = "Black";
-//        createPieces(colorPiece);
-//        colorPiece = "White";
-//        createPieces(colorPiece);
-//        render();
-//
-        Controller controller = new Controller();
+
         addMouseListener(controller);
         addMouseMotionListener(controller);
     }
@@ -81,6 +77,7 @@ public class SwingGuiManager extends JPanel implements GuiManager
     @Override
     protected void paintComponent(Graphics graphics)
     {
+
         //Draws background image
         graphics.drawImage(backgroundImage, 0, 0, null);
 
@@ -92,8 +89,6 @@ public class SwingGuiManager extends JPanel implements GuiManager
         {
             for (int column = 0; column < Board.COLUMNS; column++)
             {
-//                xPositions[i][j] = TILE_SIZE * i;
-//                yPositions[i][j] = TILE_SIZE * j;
 
                 int x = TILE_SIZE * column;
                 int y = TILE_SIZE * row;
@@ -118,10 +113,26 @@ public class SwingGuiManager extends JPanel implements GuiManager
                 } catch(Exception e) {
 
                 }
-            }
+            }        }
+
+        //Draw selected indicators
+        Piece selectedPiece = controller.getSelectedPiece();
+        if(selectedPiece != null) {
+
         }
+
+        //Draw the extra info.
+        String currentTeam = TurnManager.getInstance().currentPlayer().getTeam().toString();
+        labelCurrentPlayer.setText("Current Player: " + currentTeam);
+        labelCurrentPlayer.setFont(new Font("sans-serif", Font.BOLD, 20));
+        labelCurrentPlayer.setForeground(Color.WHITE);
+
+        add(labelCurrentPlayer);
+
+        labelCurrentPlayer.setLocation(950,100);
     }
 
+    @Override
     public void render()
     {
         repaint();
@@ -132,11 +143,3 @@ public class SwingGuiManager extends JPanel implements GuiManager
         return TILE_SIZE;
     }
 }
-
-
-
-
-
-
-
-
